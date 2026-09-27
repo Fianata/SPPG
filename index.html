@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Makan Bergizi - SPPG Bangkalan Burneh Banangkah 2</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#1352b3',
+                            700: '#0b2b63',
+                            900: '#06173b',
+                        },
+                        surface: '#f4f7fb'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="text-slate-800 antialiased selection:bg-brand-100 selection:text-brand-900 relative">
+
+    <!-- ========================================== -->
+    <!-- ANIMASI BACKGROUND MBG (ELEGAN & MODERN) -->
+    <!-- ========================================== -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden bg-surface pointer-events-none">
+        <!-- Cahaya Biru Kiri Atas -->
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-brand-100/70 blur-[120px] animate-blob"></div>
+        <!-- Cahaya Cyan Kanan Tengah -->
+        <div class="absolute top-[20%] right-[-10%] w-[45%] h-[45%] rounded-full bg-cyan-100/60 blur-[100px] animate-blob animation-delay-2000"></div>
+        <!-- Cahaya Biru Muda Bawah Kiri -->
+        <div class="absolute bottom-[-10%] left-[20%] w-[60%] h-[60%] rounded-full bg-brand-50/80 blur-[130px] animate-blob animation-delay-4000"></div>
+        
+        <!-- Pattern Titik-titik transparan agar lebih estetik -->
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8Y2lyY2xlIGN4PSI0IiBjeT0iNCIgcj0iMC41IiBmaWxsPSIjY2JkNWUxIi8+Cjwvc3ZnPg==')] opacity-40"></div>
+    </div>
+    <!-- ========================================== -->
+
+    <!-- Floating Navbar -->
+    <nav class="sticky top-0 z-50 backdrop-blur-md bg-white/70 border-b border-slate-200/60 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="w-11 h-11 bg-white rounded-full flex items-center justify-center overflow-hidden shadow-sm border border-slate-100 ring-2 ring-brand-100">
+                    <img src="logo.jpeg" alt="Logo" class="w-full h-full object-cover">
+                </div>
+                <div>
+                   <div class="text-[10px] font-extrabold text-brand-600 tracking-widest uppercase">Badan Gizi Nasional</div>
+                   <div class="text-sm sm:text-base font-bold text-brand-700 leading-tight">SPPG BANGKALAN BURNEH BANANGKAH 2</div>
+                </div>
+            </div>
+            <button class="bg-brand-700 text-white text-xs sm:text-sm font-semibold px-5 py-2 rounded-full hover:bg-brand-900 transition-all shadow-md hover:shadow-lg">
+                Admin Area
+            </button>
+        </div>
+    </nav>
+
+    <!-- Modern Hero Section -->
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 text-center">
+        <div class="inline-block mb-3 px-4 py-1.5 rounded-full bg-white/60 backdrop-blur border border-brand-100 shadow-sm">
+            <span class="text-brand-600 text-xs sm:text-sm font-bold tracking-wider uppercase">Informasi Menu Harian</span>
+        </div>
+        <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold text-brand-700 leading-tight tracking-tight mt-2 mb-4">
+            Menu Makan <br class="hidden sm:block">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-cyan-500">Bergizi Gratis</span>
+        </h1>
+        <p class="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto font-medium">
+            Jadwal menu harian, rincian komposisi makanan, dan informasi nilai gizi per porsi untuk memastikan nutrisi yang optimal.
+        </p>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 space-y-8">
+        
+        <!-- Header Tanggal & Tombol Tab Modern -->
+        <div class="bg-white/90 backdrop-blur-md rounded-[2rem] shadow-sm border border-slate-100 p-2 sm:p-3 flex flex-col lg:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-6 px-6 py-2">
+                <div>
+                    <p class="text-[10px] font-bold text-slate-400 tracking-widest uppercase mb-0.5">Hari Ini</p>
+                    <p id="tampil-hari" class="text-xl font-extrabold text-brand-700 fade-in">-</p>
+                </div>
+                <div class="h-8 w-px bg-slate-200"></div>
+                <div>
+                    <p class="text-[10px] font-bold text-slate-400 tracking-widest uppercase mb-0.5">Tanggal</p>
+                    <p id="tampil-tanggal" class="text-sm font-semibold text-slate-600 fade-in">-</p>
+                </div>
+            </div>
+            <div id="tab-container" class="flex overflow-x-auto hide-scrollbar gap-2 w-full lg:w-auto p-1 bg-slate-100/50 rounded-full border border-slate-100"></div>
+        </div>
+<!-- Banner Peraturan Makan -->
+        <div class="bg-rose-100/70 backdrop-blur-md border border-rose-100 rounded-[2rem] p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-sm fade-in">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-white shadow-sm border border-rose-100 text-rose-500 rounded-full flex items-center justify-center text-xl flex-shrink-0">
+                    ⚠️
+                </div>
+                <div>
+                    <h3 class="text-rose-700 font-extrabold text-lg">Perhatian & Tata Tertib</h3>
+                    <p class="text-rose-600/80 text-sm font-medium mt-0.5">Mohon patuhi aturan berikut demi kelancaran program.</p>
+                </div>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                <!-- Aturan 1: Waktu -->
+                <div class="bg-white/80 border border-rose-500 px-5 py-3.5 rounded-2xl flex items-center gap-3 shadow-sm w-full sm:w-auto">
+                    <span class="text-xl">⏱️</span>
+                    <div>
+                        <p class="text-[18px] text-slate-500 font-bold uppercase mb-0.5">Batas Waktu</p>
+                        <p class="text-slate-900 font-extrabold text-sm">Makan s.d Pukul 09:00</p>
+                    </div>
+                </div>
+                
+                <!-- Aturan 2: Larangan -->
+                <div class="bg-white/80 border border-rose-500 px-5 py-3.5 rounded-2xl flex items-center gap-3 shadow-sm w-full sm:w-auto">
+                    <span class="text-xl">🚫</span>
+                    <div>
+                        <p class="text-[18px] text-slate-500 font-bold uppercase mb-0.5">Larangan</p>
+                        <p class="text-slate-900 font-extrabold text-sm">Makanan Dilarang Dibawa Pulang</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Kartu Menu Utama -->
+        <div class="bg-white/95 backdrop-blur-xl rounded-[2.5rem] shadow-xl shadow-brand-100/60 border border-white overflow-hidden flex flex-col md:flex-row fade-in" id="konten-menu">
+            <div class="md:w-1/2 min-h-[350px] md:min-h-[500px] relative overflow-hidden group">
+                <img id="tampil-gambar" src="" alt="Foto Menu" class="w-full h-full object-cover absolute inset-0 transition-transform duration-700 group-hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-900/60 via-transparent to-transparent opacity-80"></div>
+                <div class="absolute top-6 left-6 backdrop-blur-md bg-white/90 text-brand-700 text-[10px] font-bold px-4 py-2 rounded-full flex items-center gap-2 z-10 shadow-sm">
+                    <span class="w-2 h-2 bg-brand-500 rounded-full animate-pulse"></span>
+                    SPPG BANGKALAN BURNEH BANANGKAH 2
+                </div>
+            </div>
+            <div class="md:w-1/2 p-8 sm:p-12 lg:p-16 flex flex-col justify-center relative">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-brand-50 rounded-bl-[100px] -z-10 opacity-70"></div>
+                <div class="flex items-center gap-3 mb-4">
+                    <span id="tampil-hari-kecil" class="bg-brand-100 text-brand-700 font-bold text-xs px-3 py-1 rounded-md tracking-wider uppercase">-</span>
+                    <span id="tampil-tanggal-kecil" class="text-slate-400 font-medium text-sm">-</span>
+                </div>
+                <h2 id="tampil-nama-menu" class="text-4xl sm:text-5xl font-extrabold text-brand-700 mt-2 mb-8 leading-tight">Memuat...</h2>
+                <div>
+                    <p class="text-xs font-bold text-slate-400 tracking-widest uppercase mb-4">Komposisi Makanan</p>
+                    <div id="wadah-isi-makanan" class="flex flex-wrap gap-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kartu Gizi Minimalis -->
+        <div class="bg-white/95 backdrop-blur-xl rounded-[2.5rem] shadow-lg shadow-brand-50 border border-white p-8 sm:p-12 fade-in relative overflow-hidden" id="konten-gizi">
+            <div class="mb-10 text-center sm:text-left">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-700">Informasi Nilai Gizi</h2>
+                <p class="text-slate-500 text-sm mt-2">Kandungan gizi harian yang disajikan per porsi ukuran anak.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="bg-brand-50/50 rounded-3xl p-6 sm:p-8 border border-brand-100">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-xl border border-brand-100">🍽️</div>
+                        <h3 class="text-brand-700 font-bold text-lg">Porsi Besar</h3>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        <div class="bg-white rounded-2xl p-4 shadow-sm border border-brand-50"><p class="text-[11px] text-slate-400 font-bold uppercase mb-1">Energi</p><p class="text-xl font-black text-brand-600"><span id="b-energi">0</span> <span class="text-xs text-slate-400 font-medium">kkal</span></p></div>
+                        <div class="bg-white rounded-2xl p-4 shadow-sm border border-brand-50"><p class="text-[11px] text-slate-400 font-bold uppercase mb-1">Protein</p><p class="text-xl font-black text-slate-800"><span id="b-protein">0</span> <span class="text-xs text-slate-400 font-medium">g</span></p></div>
+                        <div class="bg-white rounded-2xl p-4 shadow-sm border border-brand-50"><p class="text-[11px] text-slate-400 font-bold uppercase mb-1">Lemak</p><p class="text-xl font-black text-slate-800"><span id="b-lemak">0</span> <span class="text-xs text-slate-400 font-medium">g</span></p></div>
+                        <div class="bg-white rounded-2xl p-4 shadow-sm border border-brand-50"><p class="text-[11px] text-slate-400 font-bold uppercase mb-1">Karbo</p><p class="text-xl font-black text-slate-800"><span id="b-karbo">0</span> <span class="text-xs text-slate-400 font-medium">g</span></p></div>
+                        <div class="bg-white rounded-2xl p-4 shadow-sm border border-brand-50"><p class="text-[11px] text-slate-400 font-bold uppercase mb-1">Serat</p><p class="text-xl font-black text-slate-800"><span id="b-serat">0</span> <span class="text-xs text-slate-400 font-medium">g</span></p></div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-50/50 rounded-3xl p-6 sm:p-8 border border-brand-100">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-xl border border-brand-100">🥣</div>
+                        <h3 class="text-brand-700 font-bold text-lg">Porsi Kecil</h3>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        <div class="bg-white rounded-2xl p-4 shadow-sm border border-brand-50"><p class="text-[11px] text-slate-400 font-bold uppercase mb-1">Energi</p><p class="text-xl font-black text-brand-600"><span id="k-energi">0</span> <span class="text-xs text-slate-400 font-medium">kkal</span></p></div>
+                        <div class="bg-white rounded-2xl p-4 shadow-sm border border-brand-50"><p class="text-[11px] text-slate-400 font-bold uppercase mb-1">Protein</p><p class="text-xl font-black text-slate-800"><span id="k-protein">0</span> <span class="text-xs text-slate-400 font-medium">g</span></p></div>
+                        <div class="bg-white rounded-2xl p-4 shadow-sm border border-brand-50"><p class="text-[11px] text-slate-400 font-bold uppercase mb-1">Lemak</p><p class="text-xl font-black text-slate-800"><span id="k-lemak">0</span> <span class="text-xs text-slate-400 font-medium">g</span></p></div>
+                        <div class="bg-white rounded-2xl p-4 shadow-sm border border-brand-50"><p class="text-[11px] text-slate-400 font-bold uppercase mb-1">Karbo</p><p class="text-xl font-black text-slate-800"><span id="k-karbo">0</span> <span class="text-xs text-slate-400 font-medium">g</span></p></div>
+                        <div class="bg-white rounded-2xl p-4 shadow-sm border border-brand-50"><p class="text-[11px] text-slate-400 font-bold uppercase mb-1">Serat</p><p class="text-xl font-black text-slate-800"><span id="k-serat">0</span> <span class="text-xs text-slate-400 font-medium">g</span></p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Galeri Menu -->
+        <div class="pt-10">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-extrabold text-brand-700">Arsip Menu Mingguan</h2>
+                <p class="text-slate-600 mt-2 font-medium">Dokumentasi sajian makanan sehat sepanjang minggu.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Senin -->
+                <div class="group bg-white/90 backdrop-blur rounded-3xl overflow-hidden shadow-sm border border-white hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="h-56 relative overflow-hidden">
+                        <img src="menu 1.jpeg" alt="Senin" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 left-4 bg-brand-700/90 backdrop-blur-sm text-white text-[10px] font-black uppercase px-3 py-1.5 rounded-full">Senin</div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-xs text-brand-500 font-bold mb-1">21 September 2026</p>
+                        <h3 class="text-lg font-bold text-brand-700">Ayam Goreng Lengkuas</h3>
+                    </div>
+                </div>
+
+                <!-- Selasa -->
+                <div class="group bg-white/90 backdrop-blur rounded-3xl overflow-hidden shadow-sm border border-white hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="h-56 relative overflow-hidden">
+                        <img src="menu 2.jpg" alt="Selasa" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 left-4 bg-brand-700/90 backdrop-blur-sm text-white text-[10px] font-black uppercase px-3 py-1.5 rounded-full">Selasa</div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-xs text-brand-500 font-bold mb-1">22 September 2026</p>
+                        <h3 class="text-lg font-bold text-brand-700">Rendang Daging Sapi</h3>
+                    </div>
+                </div>
+
+                <!-- Rabu -->
+                <div class="group bg-white/90 backdrop-blur rounded-3xl overflow-hidden shadow-sm border border-white hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="h-56 relative overflow-hidden">
+                        <img src="menu 3.jpeg" alt="Rabu" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 left-4 bg-brand-700/90 backdrop-blur-sm text-white text-[10px] font-black uppercase px-3 py-1.5 rounded-full">Rabu</div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-xs text-brand-500 font-bold mb-1">23 September 2026</p>
+                        <h3 class="text-lg font-bold text-brand-700">Ikan Nila Bakar Madu</h3>
+                    </div>
+                </div>
+
+                <!-- Kamis -->
+                <div class="group bg-white/90 backdrop-blur rounded-3xl overflow-hidden shadow-sm border border-white hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="h-56 relative overflow-hidden">
+                        <img src="menu 4.jpeg" alt="Kamis" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 left-4 bg-brand-700/90 backdrop-blur-sm text-white text-[10px] font-black uppercase px-3 py-1.5 rounded-full">Kamis</div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-xs text-brand-500 font-bold mb-1">24 September 2026</p>
+                        <h3 class="text-lg font-bold text-brand-700">Ayam Bakar Taliwang</h3>
+                    </div>
+                </div>
+
+                <!-- Jumat -->
+                <div class="group bg-white/90 backdrop-blur rounded-3xl overflow-hidden shadow-sm border border-white hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="h-56 relative overflow-hidden">
+                        <img src="menu 5.jpeg" alt="Jumat" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 left-4 bg-brand-700/90 backdrop-blur-sm text-white text-[10px] font-black uppercase px-3 py-1.5 rounded-full">Jumat</div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-xs text-brand-500 font-bold mb-1">25 September 2026</p>
+                        <h3 class="text-lg font-bold text-brand-700">Soto Ayam Lamongan</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white/80 backdrop-blur border-t border-slate-200 mt-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <h2 class="text-lg font-extrabold text-brand-700">SPPG BANGKALAN BURNEH BANANGKAH 2</h2>
+                <p class="text-slate-500 text-sm mt-1">Platform Informasi Menu Makan Bergizi Gratis</p>
+            </div>
+            <div class="text-sm font-semibold text-slate-400">
+                &copy; 2026 Badan Gizi Nasional
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
