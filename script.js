@@ -13,7 +13,7 @@ const dataMenu = {
         hari: "Selasa",
         tanggal: "22 September 2026",
         namaMenu: "comingsoon",
-        gambar: "menu 2.jpg",
+        gambar: "comingsoon.png",
         isiMakanan: ["Nasi Putih", "Rendang Daging", "Sayur Daun Singkong", "Sambal Ijo", "Jeruk"],
         giziBesar: { energi: "620", protein: "25.4", lemak: "28.1", karbo: "60.2", serat: "5.1" },
         giziKecil: { energi: "510", protein: "21.0", lemak: "24.5", karbo: "50.1", serat: "4.8" }
