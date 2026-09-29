@@ -3,7 +3,7 @@ const dataMenu = {
     "senin": {
         hari: "Senin",
         tanggal: "21 September 2026",
-        namaMenu: "Ayam Goreng Lengkuas",
+        namaMenu: "comingsoon",
         gambar: "comingsoon.png", 
         isiMakanan: ["Nasi Putih", "Ayam Goreng Lengkuas", "Tempe Goreng", "Tumis Wortel Buncis", "Pisang"],
         giziBesar: { energi: "555", protein: "20.6", lemak: "22.9", karbo: "67.4", serat: "4.6" },
@@ -12,7 +12,7 @@ const dataMenu = {
     "selasa": {
         hari: "Selasa",
         tanggal: "22 September 2026",
-        namaMenu: "comingsoon.png",
+        namaMenu: "comingsoon",
         gambar: "menu 2.jpg",
         isiMakanan: ["Nasi Putih", "Rendang Daging", "Sayur Daun Singkong", "Sambal Ijo", "Jeruk"],
         giziBesar: { energi: "620", protein: "25.4", lemak: "28.1", karbo: "60.2", serat: "5.1" },
@@ -22,7 +22,7 @@ const dataMenu = {
         hari: "Rabu",
         tanggal: "23 September 2026",
         namaMenu: "Ikan Nila Bakar Madu",
-        gambar: "menu 3.jpeg",
+        gambar: "comingsoon.png",
         isiMakanan: ["Nasi Putih", "Ikan Nila Bakar", "Tahu Bacem", "Sayur Asem", "Semangka"],
         giziBesar: { energi: "530", protein: "28.5", lemak: "15.2", karbo: "65.0", serat: "6.2" },
         giziKecil: { energi: "460", protein: "24.1", lemak: "12.8", karbo: "55.3", serat: "5.5" }
